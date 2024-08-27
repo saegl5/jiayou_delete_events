@@ -1,6 +1,7 @@
 // Modify the search query as desired
 // CAUTION! Deleted events are not recoverable! Once they are deleted, they are gone forever!
 
+var myCalendarName = "JIA YOU";
 var myNewQuery = "Updated Meeting"; // Query ignores any extra spacing
 
 
@@ -10,7 +11,7 @@ var myNewQuery = "Updated Meeting"; // Query ignores any extra spacing
 // The script below comes with absolutely no warranty. Use it at your own risk.
 
 function deleteEvents() {
-  var calendarName = "JIA YOU";
+  var calendarName = myCalendarName;
   var calendars = CalendarApp.getAllCalendars();  // Get all calendars
   
   // Loop through all calendars and find the one with the matching name
