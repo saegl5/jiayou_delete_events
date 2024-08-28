@@ -2,6 +2,10 @@
 
 Google Apps Script for batch deleting events. Modify as needed.
 
+## Visual Example
+
+<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>Events on only "J Day's" were deleted.
+
 ## Getting Started
 
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
