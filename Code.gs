@@ -17,7 +17,7 @@ function deleteEvents() {
   // Loop through all calendars and find the one with the matching name
   for (var i = 0; i < calendars.length; i++) {
     if (calendars[i].getName() === calendarName) {
-      Logger.log('Calendar ID for "' + calendarName + '": ' + calendars[i].getId());
+      Logger.log("Calendar ID for \"" + calendarName + "\": " + calendars[i].getId());
       var calendarId = String(calendars[i].getId());  // Assign the calendar ID
     }
   }
@@ -48,7 +48,7 @@ function deleteEvents() {
     event.deleteEvent(); // Gone forever!
 
     // Log which events were deleted
-    Logger.log('Deleted an event on ' + eventDate + '.');
+    Logger.log("Deleted an event on " + eventDate + ".");
 
   }); 
 }
