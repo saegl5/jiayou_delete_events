@@ -4,7 +4,7 @@ Google Apps Script for batch deleting events. Modify as needed.
 
 ## Visual Example
 
-<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>Events on only "J Day's" were deleted.
+<img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>Events on only "J Day's" were deleted. (See [here](https://github.com/saegl5/jiayou_update_events) how the events appeared before deleting them.)
 
 ## Getting Started
 
