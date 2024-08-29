@@ -1,4 +1,4 @@
-// Modify the search query as desired
+// Modify the calendar name and search query as desired
 // CAUTION: Deleted events are not recoverable! Once they are deleted, they are gone forever!
 
 var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
