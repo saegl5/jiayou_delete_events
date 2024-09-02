@@ -19,7 +19,7 @@ WARNING: Deleted events are not recoverable!
 3. Create an HTML file, and name it "Index."
 4. Copy and paste [the markup text](./Index.html) into the editor, and save the file.
 5. Deploy the project as a Web app, and open the assigned URL.
-6. Modify the calendar name and search query. (Recommended, if you had created or updated events on an alternate calender. ***Must name the calendar differently from the owner name, otherwise the script will not delete events.***)
+6. Modify the calendar name and search query. (Modifying the calendar name is recommended, if you had created or updated events on an alternate calender. ***Must name the calendar differently from the owner name, otherwise the script will not delete events.***)
 7. Press submit. (Requires permission to make changes to events and authorization. ***Note also that deleting calendar events may be subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
 ## Known Issue
