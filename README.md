@@ -18,5 +18,9 @@ CAUTION: Deleted events are not recoverable!
 4. Modify the search query. (By default, it is "Updated Meeting." Specifically, `myNewQuery = "Updated Meeting";`)
 5. Save and run the script. (Requires permission to make changes to events and authorization. ***Note also that deleting calendar events may be subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
 
+### Web App
+
+To deploy the project as a web app, please consult the [development branch](https://github.com/saegl5/jiayou_delete_events/tree/development).
+
 <hr>
 Made with &heartsuit; in Visual Studio Code
