@@ -14,8 +14,11 @@ var myNewEnd = ""; // Confine date range
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
 
-function deleteEvents() {
-  var calendarName = myCalendarName;
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Index')
+}
+
+function deleteEvents(calendarName, query) {
   var calendars = CalendarApp.getAllCalendars();  // Get all calendars
   
   // Loop through all calendars and find the one with the matching name
@@ -29,38 +32,13 @@ function deleteEvents() {
   // Access the calendar
   var calendar = CalendarApp.getCalendarById(calendarId);
   
-  // Check for null dates
-  if (myNewStart !== "" && myNewEnd !== "") {
-    // Set the search parameters
-    var query = myNewQuery;
-    var queryAdd = myNewQueryAdd;
-    myNewStart = new Date(myNewStart);
-    myNewEnd = new Date(myNewEnd); // excluded from search
-    myNewEnd.setDate(myNewEnd.getDate() + 1); // include end date in search
-
-    // Search for events between start and end dates
-    var events = calendar.getEvents(myNewStart, myNewEnd, {search: query});
-
-    // Check additional query
-    if (queryAdd !== "") {
-      var eventsAdd = calendar.getEvents(myNewStart, myNewEnd, {search: queryAdd});
-    }
-  } else {
-    // Set the search parameters
-    var query = myNewQuery;
-    var queryAdd = myNewQueryAdd;
-    var now = new Date();
-    var oneYearFromNow = new Date();
-    oneYearFromNow.setFullYear(now.getFullYear() + 1);
-
-    // Search for events between now and one year from now
-    var events = calendar.getEvents(now, oneYearFromNow, {search: query});
-
-    // Check additional query
-    if (queryAdd !== "") {
-      var eventsAdd = calendar.getEvents(now, oneYearFromNow, {search: queryAdd});
-    }
-  }
+  // Set the search parameters
+  var now = new Date();
+  var oneYearFromNow = new Date();
+  oneYearFromNow.setFullYear(now.getFullYear() + 1);
+  
+  // Search for events with title "New Meeting" between now and one year from now
+  var events = calendar.getEvents(now, oneYearFromNow, {search: query});
   
   if (queryAdd !== "") {
     // Loop through each event found
@@ -98,9 +76,9 @@ function deleteEvents() {
       // Delete the event
       event.deleteEvent(); // Gone forever!
 
-      // Log which events were deleted
-      Logger.log("Deleted an event on " + eventDate + ".");
-    });
-  }
+    // Log which events were deleted
+    Logger.log("Deleted an event on " + eventDate + ".");
+
+  });
   return "Events deleted!";
 }
