@@ -1,14 +1,4 @@
-// Modify the calendar name and search query as desired
 // WARNING: Deleted events are not recoverable! Once they are deleted, they are gone forever!
-
-var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
-var myNewQuery = "Updated Meeting"; // Query ignores any extra spacing
-var myNewQueryAdd = "J Day"; // Query ignores any extra spacing, input additional query to confine search
-var myNewStart = ""; // Confine date range
-var myNewEnd = ""; // Confine date range
-// Accepted date formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY
-
-
 
 // ** WARNING **
 // If the script below is modified improperly, running it may cause irrevocable damage.
