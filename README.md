@@ -3,7 +3,7 @@
 Google Apps Script for batch deleting events. Modify as needed.
 
 ```
-CAUTION: Deleted events are not recoverable!
+WARNING: Deleted events are not recoverable!
 ```
 
 ## Visual Example
