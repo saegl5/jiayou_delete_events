@@ -1,6 +1,6 @@
 # Delete 加油 ("jiā yóu") Events
 
-Google Apps Script for batch deleting events. Modify as needed.
+Google Apps Script for batch deleting events. Modify as needed, and back up your calendars before you run the script.
 
 ```
 WARNING: Deleted events are not recoverable!
