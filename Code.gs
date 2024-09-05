@@ -3,6 +3,9 @@
 
 var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
 var myNewQuery = "Updated Meeting"; // Query ignores any extra spacing
+var myNewStart = ""; // Confine date range
+var myNewEnd = ""; // Confine date range
+// Accepted date formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY
 
 
 
@@ -25,14 +28,27 @@ function deleteEvents() {
   // Access the calendar
   var calendar = CalendarApp.getCalendarById(calendarId);
   
-  // Set the search parameters
-  var query = myNewQuery;
-  var now = new Date();
-  var oneYearFromNow = new Date();
-  oneYearFromNow.setFullYear(now.getFullYear() + 1);
-  
-  // Search for events with title "New Meeting" between now and one year from now
-  var events = calendar.getEvents(now, oneYearFromNow, {search: query});
+  // Check for null dates
+  if (myNewStart !== "" && myNewEnd !== "") {
+    // Set the search parameters
+    var query = myNewQuery;
+    myNewStart = new Date(myNewStart);
+    myNewEnd = new Date(myNewEnd); // excluded from search
+    myNewEnd.setDate(myNewEnd.getDate() + 1); // include end date in search
+
+    // Search for events between start and end dates
+    var events = calendar.getEvents(myNewStart, myNewEnd, {search: query});
+  }
+  else {
+    // Set the search parameters
+    var query = myNewQuery;
+    var now = new Date();
+    var oneYearFromNow = new Date();
+    oneYearFromNow.setFullYear(now.getFullYear() + 1);
+    
+    // Search for events between now and one year from now
+    var events = calendar.getEvents(now, oneYearFromNow, {search: query});
+  }
   
   // Loop through each event found
   events.forEach(function(event) {
