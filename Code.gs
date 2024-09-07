@@ -47,33 +47,13 @@ function deleteEvents(calendarName, query, start, end) {
   events.forEach(function(event) {
     var eventDate = event.getStartTime();
 
-      // Extract just the date part as a string
-      eventDate = eventDate.toDateString();
+    // Extract just the date part as a string
+    eventDate = eventDate.toDateString();
 
-      // Loop through each event found, again
-      eventsAdd.forEach(function(eventAdd) {
-        var eventDateAdd = eventAdd.getStartTime();
+    // Not storing the date in a dictionary
 
-        // Extract just the date part as a string, again
-        var eventDateAdd = eventDateAdd.toDateString();
-
-        // Find matches
-        if (eventDate === eventDateAdd) {
-          // Delete the event
-          event.deleteEvent(); // Gone forever!
-
-          // Log which events were deleted
-          Logger.log("Deleted an event on " + eventDate + ".");
-        }
-      });
-    });
-  } else {
-    // Loop through each event found
-    events.forEach(function(event) {
-      var eventDate = event.getStartTime();
-
-      // Extract just the date part as a string
-      eventDate = eventDate.toDateString();
+    // Cast "eventDate" as a function
+    eventDate = new Date(eventDate);
 
       // Delete the event
       event.deleteEvent(); // Gone forever!
