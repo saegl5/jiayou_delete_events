@@ -54,7 +54,7 @@ function deleteEvents() {
   events.forEach(function(event) {
     var eventDate = event.getStartTime();
 
-    // Extract just the date part (YYYY-MM-DD) as a string
+    // Extract just the date part as a string
     eventDate = eventDate.toDateString(); // Not storing the date in a dictionary
 
     // Cast "eventDate" as a function
