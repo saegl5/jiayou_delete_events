@@ -48,6 +48,12 @@
       <!-- Query ignores any extra spacing -->
       </br>
 
+      <label for="queryAdd">Additional search query: (if any)</label>
+      <input type="text" id="queryAdd" name="queryAdd" placeholder="Optional">
+      <!-- Query ignores any extra spacing -->
+      <!-- Input query to confine search -->
+      </br>
+
       <label for="start">Start date:</label>
       <input type="text" id="start" name="start" placeholder="Optional"></input>
       <!-- Confine date range -->
@@ -71,13 +77,14 @@
 
         var calendarName = document.getElementById('calendarName').value;
         var query = document.getElementById('query').value;
+        var queryAdd = document.getElementById('queryAdd').value;
         var start = document.getElementById('start').value;
         var end = document.getElementById('end').value;
         document.getElementById("wait").innerHTML = "Please wait...";
 
         google.script.run.withSuccessHandler(function(response) {
           document.getElementById('wait').innerHTML = response; // Displays a success message when completed
-        }).deleteEvents(calendarName, query, start, end);
+        }).deleteEvents(calendarName, query, queryAdd, start, end);
       });
     </script>
   </body>

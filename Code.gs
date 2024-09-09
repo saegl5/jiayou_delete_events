@@ -8,7 +8,7 @@ function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index");
 }
 
-function deleteEvents(calendarName, query, start, end) {
+function deleteEvents(calendarName, query, queryAdd, start, end) {
   var calendars = CalendarApp.getAllCalendars(); // Get all calendars
 
   // Loop through all calendars and find the one with the matching name
@@ -33,6 +33,11 @@ function deleteEvents(calendarName, query, start, end) {
 
     // Search for events between start and end dates
     var events = calendar.getEvents(start, end, { search: query });
+
+    // Check additional query
+    if (queryAdd !== "") {
+      var eventsAdd = calendar.getEvents(start, end, { search: queryAdd });
+    }
   } else {
     // Set the search parameters
     var now = new Date();
@@ -41,25 +46,56 @@ function deleteEvents(calendarName, query, start, end) {
 
     // Search for events between now and one year from now
     var events = calendar.getEvents(now, oneYearFromNow, { search: query });
+
+    // Check additional query
+    if (queryAdd !== "") {
+      var eventsAdd = calendar.getEvents(now, oneYearFromNow, {
+        search: queryAdd,
+      });
+    }
   }
 
-  // Loop through each event found
-  events.forEach(function(event) {
-    var eventDate = event.getStartTime();
+  if (queryAdd !== "") {
+    // Loop through each event found
+    events.forEach(function(event) {
+      var eventDate = event.getStartTime();
 
-    // Extract just the date part as a string
-    eventDate = eventDate.toDateString();
+      // Extract just the date part as a string
+      eventDate = eventDate.toDateString();
 
-    // Not storing the date in a dictionary
+      // Loop through each event found, again
+      eventsAdd.forEach(function(eventAdd) {
+        var eventDateAdd = eventAdd.getStartTime();
 
-    // Cast "eventDate" as a function
-    eventDate = new Date(eventDate);
+        // Extract just the date part as a string, again
+        var eventDateAdd = eventDateAdd.toDateString();
+
+        // Find matches
+        if (eventDate === eventDateAdd) {
+          // Delete the event
+          event.deleteEvent(); // Gone forever!
+
+          // Log which events were deleted
+          Logger.log("Deleted an event on " + eventDate + ".");
+        }
+      });
+    });
+  } else {
+    // Loop through each event found
+    events.forEach(function(event) {
+      var eventDate = event.getStartTime();
+
+      // Extract just the date part as a string
+      eventDate = eventDate.toDateString();
 
       // Delete the event
       event.deleteEvent(); // Gone forever!
+      // Delete the event
+      event.deleteEvent(); // Gone forever!
 
-    // Log which events were deleted
-    Logger.log("Deleted an event on " + eventDate + ".");
-  });
+      // Log which events were deleted
+      Logger.log("Deleted an event on " + eventDate + ".");
+    });
+  }
   return "Events deleted!";
 }
