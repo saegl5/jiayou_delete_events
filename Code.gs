@@ -68,7 +68,7 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
         var eventDateAdd = eventAdd.getStartTime();
 
         // Extract just the date part as a string, again
-        var eventDateAdd = eventDateAdd.toDateString();
+        eventDateAdd = eventDateAdd.toDateString();
 
         // Find matches
         if (eventDate === eventDateAdd) {
