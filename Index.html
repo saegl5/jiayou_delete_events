@@ -7,12 +7,10 @@
       form {
         max-width: 540px;
         margin: 0 auto;
-        padding-top: 10px;
-        padding-left: 15px;
-        padding-right: 20px;
+        padding: 15px;
         border: 1px solid Silver;
         border-radius: 5px;
-        background-color: #F8F8F8;
+        background-color: Gainsboro;
       }
       label, select, input {
         display: block;
@@ -35,6 +33,18 @@
         text-align: center;
         color: #000;
       }
+      div[id="search"] {
+        text-align: left;
+        padding-top: 10px;
+        padding-left: 15px;
+        padding-right: 20px;
+        border: 1px solid Silver;
+        border-radius: 5px;
+        background-color: #F8F8F8;
+      }
+      text[id="search"] {
+        font-style: normal;
+      }
       input[type="submit"] {
         background-color: white;
         border-color: Silver;
@@ -47,33 +57,44 @@
     <h1><center>Delete 加油 ("jiā yóu") Events</center></h1>
     <h3><center><font style="color: red;">WARNING: Deleted events are not recoverable!</font></center></h3>
     <form id="calendarForm">
-      <label for="calendarName">Calendar name:</label>
-      <input type="text" id="calendarName" name="calendarName" required>
-      <!-- Must name it differently from the owner name -->
+
+      <div id="search">
+      
+        <text id="search"><center>Search Parameters</center></text>
+        </br>
+
+        <label for="calendarName">Calendar name:</label>
+        <input type="text" id="calendarName" name="calendarName" required>
+        <!-- Must name it differently from the owner name -->
+        </br>
+
+        <label for="query">Query:</label>
+        <input type="text" id="query" name="query" required>
+        <!-- Query ignores any extra spacing -->
+        </br>
+
+        <label for="queryAdd">Additional query:</label>
+        <input type="text" id="queryAdd" name="queryAdd" placeholder="Optional">
+        <text>Confine your search</text>
+        <!-- Query ignores any extra spacing -->
+        <!-- Input query to confine search -->
+        </br></br>
+
+        <label for="start">Start date:</label>
+        <input type="text" id="start" name="start" placeholder="Optional"></input>
+        <!-- Confine date range -->
+        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        </br></br>
+
+        <label for="end">End date:</label>
+        <input type="text" id="end" name="end" placeholder="Optional"></input>
+        <!-- Confine date range -->
+        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        </br></br>
+
+      </div>
+
       </br>
-
-      <label for="query">Search query:</label>
-      <input type="text" id="query" name="query" required>
-      <!-- Query ignores any extra spacing -->
-      </br>
-
-      <label for="queryAdd">Additional search query: (if any)</label>
-      <input type="text" id="queryAdd" name="queryAdd" placeholder="Optional">
-      <!-- Query ignores any extra spacing -->
-      <!-- Input query to confine search -->
-      </br>
-
-      <label for="start">Start date:</label>
-      <input type="text" id="start" name="start" placeholder="Optional"></input>
-      <!-- Confine date range -->
-      <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
-      </br></br>
-
-      <label for="end">End date:</label>
-      <input type="text" id="end" name="end" placeholder="Optional"></input>
-      <!-- Confine date range -->
-      <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
-      </br></br>
 
       <input type="submit" value="Submit">
       <div id="wait">&nbsp;</div>
