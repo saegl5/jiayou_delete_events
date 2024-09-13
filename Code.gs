@@ -55,6 +55,15 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
     }
   }
 
+  // Check if query finds no events
+  if (events == []) {
+    return "No \"" + query + "\" events exist!";
+  }
+  // Check if queryAdd finds no events
+  if (eventsAdd == []) {
+    return "No \"" + queryAdd + "\" events exist!";
+  }
+
   if (queryAdd !== "") {
     // Loop through each event found
     events.forEach(function(event) {
