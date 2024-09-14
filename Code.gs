@@ -62,13 +62,16 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
   }
 
   // Check if query finds no events
-  if (events == []) {
+  if (events.length === 0) {
     return "No \"" + query + "\" events exist!";
   }
   // Check if queryAdd finds no events
-  if (eventsAdd == []) {
+  if (queryAdd !== "" && eventsAdd.length === 0) {
     return "No \"" + queryAdd + "\" events exist!";
   }
+
+  // Check if query and queryAdd find no matching events below
+  var match = "no";
 
   if (queryAdd !== "") {
     // Loop through each event found
@@ -90,11 +93,19 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
           // Delete the event
           event.deleteEvent(); // Gone forever!
 
+          match = "yes";
+
           // Log which events were deleted
           Logger.log("Deleted an event on " + eventDate + ".");
         }
       });
     });
+    if (match === "no") {
+      return "No \"" + query + "\" and \"" + queryAdd + "\" events match!";
+    }
+    else {
+      return "Events deleted!";
+    }
   } else {
     // Loop through each event found
     events.forEach(function(event) {
@@ -105,12 +116,10 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
 
       // Delete the event
       event.deleteEvent(); // Gone forever!
-      // Delete the event
-      event.deleteEvent(); // Gone forever!
 
       // Log which events were deleted
       Logger.log("Deleted an event on " + eventDate + ".");
     });
+    return "Events deleted!";
   }
-  return "Events deleted!";
 }
