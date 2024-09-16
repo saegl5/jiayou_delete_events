@@ -8,16 +8,16 @@ function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index");
 }
 
-function deleteEvents(calendarName, query, queryAdd, start, end) {
+function deleteEvents(calendarName, query, queryAdd, start, end, dryRun) {
   var calendars = CalendarApp.getAllCalendars(); // Get all calendars
   var calendarId = ""; // Initially null
 
   // Loop through all calendars and find the one with the matching name
   for (var i = 0; i < calendars.length; i++) {
     if (calendars[i].getName() === calendarName) {
-      Logger.log(
-        'Calendar ID for "' + calendarName + '": ' + calendars[i].getId()
-      );
+      // Logger.log(
+      //   'Calendar ID for "' + calendarName + '": ' + calendars[i].getId()
+      // );
       calendarId = String(calendars[i].getId()); // Assign the calendar ID
     }
   }
@@ -91,7 +91,9 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
         // Find matches
         if (eventDate === eventDateAdd) {
           // Delete the event
-          event.deleteEvent(); // Gone forever!
+          if (!dryRun) {
+            event.deleteEvent(); // Gone forever!
+          }
 
           match = "yes";
 
@@ -115,7 +117,9 @@ function deleteEvents(calendarName, query, queryAdd, start, end) {
       eventDate = eventDate.toDateString();
 
       // Delete the event
-      event.deleteEvent(); // Gone forever!
+      if (!dryRun) {
+        event.deleteEvent(); // Gone forever!
+      }
 
       // Log which events were deleted
       Logger.log("Deleted an event on " + eventDate + ".");

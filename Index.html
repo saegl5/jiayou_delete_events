@@ -12,12 +12,12 @@
         border-radius: 5px;
         background-color: Gainsboro;
       }
-      label, select, input {
+      select, input[type="text"], input[type="submit"] {
         display: block;
         margin-bottom: 0px;
         width: 100%;
         -webkit-box-sizing: border-box;
-        box-sizing: content-box; /* compatibility */
+        box-sizing: border-box; /* compatibility */
       }
       select, input, div {
         font-family: 'Courier New', Courier, monospace;
@@ -46,6 +46,9 @@
       }
       text[id="search"] {
         font-style: normal;
+      }
+      input[type="checkbox"] {
+        vertical-align: bottom;
       }
       input[type="submit"] {
         background-color: white;
@@ -99,6 +102,13 @@
 
       </br>
 
+      <div>
+        <input type="checkbox" id="dryRun" name="dryRun"/>
+        <label for="dryRun">Dry run</label>
+      </div>
+
+      </br>
+
       <input type="submit" value="Submit">
       <div id="wait">&nbsp;</div>
     </form>
@@ -113,11 +123,14 @@
         var queryAdd = document.getElementById('queryAdd').value;
         var start = document.getElementById('start').value;
         var end = document.getElementById('end').value;
+
+        var dryRun = document.getElementById('dryRun').checked;
+
         document.getElementById("wait").innerHTML = "Please wait...";
 
         google.script.run.withSuccessHandler(function(response) {
           document.getElementById('wait').innerHTML = response; // Displays a success message when completed
-        }).deleteEvents(calendarName, query, queryAdd, start, end);
+        }).deleteEvents(calendarName, query, queryAdd, start, end, dryRun);
       });
     </script>
   </body>

@@ -23,7 +23,8 @@ WARNING: Deleted events are not recoverable!
 7. Modify the calendar name and search query. (Modifying the calendar name is recommended, if you had created or updated events on an alternate calender. **_Must name the calendar differently from the owner name, otherwise the app will not delete events._**)
 8. Confine the search by inputting an additional query.
 9. Confine the date range by inputting a start date and end date.
-10. Press submit. (Requires permission to make changes to events and another authorization. **_Note also that deleting calendar events may be subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
+10. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
+11. Press submit. (Requires permission to make changes to events and another authorization. **_Note also that deleting calendar events may be subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
 <hr>
 Made with &heartsuit; in Visual Studio Code
