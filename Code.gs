@@ -38,7 +38,8 @@ function deleteEvents() {
 
   // Check if loop finds no calendar
   if (calendarId === "") {
-    return "No \"" + calendarName + "\" calendar exists!";
+    Logger.log("No \"" + calendarName + "\" calendar exists!");
+    return null;
   }
 
   // Access the calendar
@@ -81,11 +82,13 @@ function deleteEvents() {
 
   // Check if query finds no events
   if (events.length === 0) {
-    return "No \"" + query + "\" events exist!";
+    Logger.log("No \"" + query + "\" events exist!");
+    return null;
   }
   // Check if queryAdd finds no events
   if (queryAdd !== "" && eventsAdd.length === 0) {
-    return "No \"" + queryAdd + "\" events exist!";
+    Logger.log("No \"" + queryAdd + "\" events exist!");
+    return null;
   }
 
   // Check if query and queryAdd find no matching events below
@@ -121,10 +124,12 @@ function deleteEvents() {
       });
     });
     if (match === "no") {
-      return "No \"" + query + "\" and \"" + queryAdd + "\" events match!";
+      Logger.log("No \"" + query + "\" and \"" + queryAdd + "\" events match!");
+      return null;
     }
     else {
-      return "Events deleted!";
+      Logger.log("Events deleted!");
+      return null;
     }
   } else {
     // Loop through each event found
@@ -142,6 +147,7 @@ function deleteEvents() {
       // Log which events were deleted
       Logger.log("Deleted an event on " + eventDate + ".");
     });
-    return "Events deleted!";
+    Logger.log("Events deleted!");
+    return null;
   }
 }
