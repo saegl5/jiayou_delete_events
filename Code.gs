@@ -5,6 +5,8 @@
 // Search parameters
 var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
 var myNewQuery = "Updated Meeting"; // Event you want to delete, query ignores any extra spacing
+// personal observation: sometimes, queries find events that have details matching any word in the query
+// suggestion: specify queries as precisely as possible
 var myNewQueryAdd = "J Day"; // Input additional query to confine search, query ignores any extra spacing
 var myNewStart = ""; // Confine date range
 var myNewEnd = ""; // Confine date range
