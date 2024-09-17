@@ -1,5 +1,6 @@
 // Delete 加油 ("jiā yóu") Events
 // WARNING: Deleted events are not recoverable! Once they are deleted, they are gone forever!
+// Modify the following search parameters, then press |> Run
 
 // Search parameters
 var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
@@ -14,6 +15,7 @@ var myNewDryRun = false; // test script before running it in production
 
 
 
+// -----------------------------------------------------------------------------------
 // ** WARNING **
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
