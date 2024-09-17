@@ -14,11 +14,12 @@ WARNING: Deleted events are not recoverable!
 
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
 2. Copy and paste [the script](./Code.gs) into the editor.
-3. Modify the calendar name. (By default, it is "JIA YOU." Recommended, if you had created or updated events on an alternate calender. ***Must name it differently from the owner name, otherwise the script will not delete events.***)
+3. Modify the calendar name. (By default, it is "JIA YOU." Recommended, if you had created or updated events on an alternate calender. **_Must name it differently from the owner name, otherwise the script will not delete events._**)
 4. Modify the search query. (By default, it is "Updated Meeting." Specifically, `myNewQuery = "Updated Meeting";`)
 5. Confine the search by inputting an additional query.
 6. Confine the date range by inputting a start date and end date.
-7. Save and run the script. (Requires permission to make changes to events and authorization. ***Note also that deleting calendar events may be subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en).***)
+7. Optionally perform a dry run to test the Web app before running it in production. Consult logs for output.
+8. Save and run the script. (Requires permission to make changes to events and authorization. **_Note also that deleting calendar events may be subject to a [use limit](https://support.google.com/a/answer/2905486?hl=en)._**)
 
 ### Web App
 
