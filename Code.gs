@@ -38,7 +38,7 @@ function deleteEvents() {
 
   // Check if loop finds no calendar
   if (calendarId === "") {
-    Logger.log("No \"" + calendarName + "\" calendar exists!");
+    Logger.log('No "' + calendarName + '" calendar exists!');
     return null;
   }
 
@@ -59,7 +59,8 @@ function deleteEvents() {
     var events = [];
     for (var j = 0; j < eventsAll.length; j++) {
       var event = eventsAll[j];
-      if (event.getTitle() === query) { // MORE RELIABLE!
+      if (event.getTitle() === query) {
+        // MORE RELIABLE!
         events.push(event);
       }
     }
@@ -108,12 +109,12 @@ function deleteEvents() {
 
   // Check if query finds no events
   if (events.length === 0) {
-    Logger.log("No \"" + query + "\" events exist!");
+    Logger.log('No "' + query + '" events exist!');
     return null;
   }
   // Check if queryAdd finds no events
   if (queryAdd !== "" && eventsAdd.length === 0) {
-    Logger.log("No \"" + queryAdd + "\" events exist!");
+    Logger.log('No "' + queryAdd + '" events exist!');
     return null;
   }
 
@@ -122,14 +123,14 @@ function deleteEvents() {
 
   if (queryAdd !== "") {
     // Loop through each event found
-    events.forEach(function(event) {
+    events.forEach(function (event) {
       var eventDate = event.getStartTime();
 
       // Extract just the date part as a string
       eventDate = eventDate.toDateString();
 
       // Loop through each event found, again
-      eventsAdd.forEach(function(eventAdd) {
+      eventsAdd.forEach(function (eventAdd) {
         var eventDateAdd = eventAdd.getStartTime();
 
         // Extract just the date part as a string, again
@@ -150,16 +151,15 @@ function deleteEvents() {
       });
     });
     if (match === "no") {
-      Logger.log("No \"" + query + "\" and \"" + queryAdd + "\" events match!");
+      Logger.log('No "' + query + '" and "' + queryAdd + '" events match!');
       return null;
-    }
-    else {
+    } else {
       Logger.log("Events deleted!");
       return null;
     }
   } else {
     // Loop through each event found
-    events.forEach(function(event) {
+    events.forEach(function (event) {
       var eventDate = event.getStartTime();
 
       // Extract just the date part as a string
