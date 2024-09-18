@@ -55,11 +55,25 @@ function deleteEvents() {
     myNewEnd.setDate(myNewEnd.getDate() + 1); // include end date in search
 
     // Search for events between start and end dates
-    var events = calendar.getEvents(myNewStart, myNewEnd, { search: query });
+    var eventsAll = calendar.getEvents(myNewStart, myNewEnd);
+    var events = [];
+    for (var j = 0; j < eventsAll.length; j++) {
+      var event = eventsAll[j];
+      if (event.getTitle() === query) { // MORE RELIABLE!
+        events.push(event);
+      }
+    }
 
     // Check additional query
     if (queryAdd !== "") {
-      var eventsAdd = calendar.getEvents(myNewStart, myNewEnd, { search: queryAdd });
+      var eventsAddAll = calendar.getEvents(myNewStart, myNewEnd);
+      var eventsAdd = [];
+      for (var k = 0; k < eventsAddAll.length; k++) {
+        var event = eventsAddAll[k];
+        if (event.getTitle() === queryAdd) {
+          eventsAdd.push(event);
+        }
+      }
     }
   } else {
     // Set the search parameters
@@ -70,13 +84,25 @@ function deleteEvents() {
     oneYearFromNow.setFullYear(now.getFullYear() + 1);
 
     // Search for events between now and one year from now
-    var events = calendar.getEvents(now, oneYearFromNow, { search: query });
+    var eventsAll = calendar.getEvents(now, oneYearFromNow);
+    var events = [];
+    for (var l = 0; l < eventsAll.length; l++) {
+      var event = eventsAll[l];
+      if (event.getTitle() === query) {
+        events.push(event);
+      }
+    }
 
     // Check additional query
     if (queryAdd !== "") {
-      var eventsAdd = calendar.getEvents(now, oneYearFromNow, {
-        search: queryAdd,
-      });
+      var eventsAddAll = calendar.getEvents(now, oneYearFromNow);
+      var eventsAdd = [];
+      for (var m = 0; m < eventsAddAll.length; m++) {
+        var event = eventsAddAll[m];
+        if (event.getTitle() === queryAdd) {
+          eventsAdd.push(event);
+        }
+      }
     }
   }
 
