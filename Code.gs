@@ -29,9 +29,6 @@ function deleteEvents() {
   // Loop through all calendars and find the one with the matching name
   for (var i = 0; i < calendars.length; i++) {
     if (calendars[i].getName() === calendarName) {
-      // Logger.log(
-      //   'Calendar ID for "' + calendarName + '": ' + calendars[i].getId()
-      // );
       calendarId = String(calendars[i].getId()); // Assign the calendar ID
     }
   }
