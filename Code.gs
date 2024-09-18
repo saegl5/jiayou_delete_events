@@ -119,7 +119,7 @@ function deleteEvents() {
   }
 
   // Check if query and queryAdd find no matching events below
-  var match = "no";
+  var match = false;
 
   if (queryAdd !== "") {
     // Loop through each event found
@@ -143,14 +143,14 @@ function deleteEvents() {
             event.deleteEvent(); // Gone forever!
           }
 
-          match = "yes";
+          match = true;
 
           // Log which events were deleted
           Logger.log("Deleted an event on " + eventDate + ".");
         }
       });
     });
-    if (match === "no") {
+    if (match === false) {
       Logger.log('No "' + query + '" and "' + queryAdd + '" events match!');
       return null;
     } else {
