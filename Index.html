@@ -84,8 +84,20 @@
 
         <label for="calendarName">Calendar name:</label>
         <input type="text" id="calendarName" name="calendarName" required />
-        <text>Must name it differently from the owner name</text>
+        <text>Calendar must already exist</text>
         <br /><br />
+
+        <label for="calendarNameAlt">Alternate calendar name:</label>
+        <input
+          type="text"
+          id="calendarNameAlt"
+          name="calendarNameAlt"
+          placeholder="Optional"
+        />
+        <text
+          >If you had created events on an alternate calendar</text
+        ><br />
+        <br />
 
         <label for="query">Query:</label>
         <input type="text" id="query" name="query" required />
@@ -142,6 +154,8 @@
           event.preventDefault(); // Prevents the form from submitting the traditional way
 
           var calendarName = document.getElementById("calendarName").value;
+          var calendarNameAlt =
+            document.getElementById("calendarNameAlt").value;
           var query = document.getElementById("query").value;
           var queryAdd = document.getElementById("queryAdd").value;
           var start = document.getElementById("start").value;
@@ -155,7 +169,7 @@
             .withSuccessHandler(function (response) {
               document.getElementById("wait").innerHTML = response; // Displays a success message when completed
             })
-            .deleteEvents(calendarName, query, queryAdd, start, end, dryRun);
+            .deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end, dryRun);
         });
     </script>
   </body>
