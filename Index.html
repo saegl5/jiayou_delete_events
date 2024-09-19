@@ -70,32 +70,33 @@
 
         <label for="calendarName">Calendar name:</label>
         <input type="text" id="calendarName" name="calendarName" required>
-        <!-- Must name it differently from the owner name -->
-        </br>
+        <text>Must name it differently from the owner name</text>
+        </br></br>
 
         <label for="query">Query:</label>
         <input type="text" id="query" name="query" required>
         <text>Event you want to delete</text>
-        <!-- Query ignores any extra spacing -->
         </br></br>
 
         <label for="queryAdd">Additional query:</label>
         <input type="text" id="queryAdd" name="queryAdd" placeholder="Optional">
         <text>Confine your search</text>
-        <!-- Query ignores any extra spacing -->
-        <!-- Input query to confine search -->
+        <!-- Input additional query to confine search -->
+          
         </br></br>
 
         <label for="start">Start date:</label>
         <input type="text" id="start" name="start" placeholder="Optional"></input>
         <!-- Confine date range -->
-        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         </br></br>
 
         <label for="end">End date:</label>
         <input type="text" id="end" name="end" placeholder="Optional"></input>
         <!-- Confine date range -->
-        <text>Accepted formats: Mmm DD YYYY; MM/DD/YYYY; DD Mmm YYYY</text>
+        <text>Accepted formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY</text>
+        <!-- Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time -->
         </br></br>
 
       </div>
@@ -103,14 +104,16 @@
       </br>
 
       <div>
-        <input type="checkbox" id="dryRun" name="dryRun"/>
+        <input type="checkbox" id="dryRun" name="dryRun" unchecked />
         <label for="dryRun">Dry run</label>
+        <!-- test script before running it in production -->
       </div>
 
       </br>
 
       <input type="submit" value="Submit">
       <div id="wait">&nbsp;</div>
+      <!-- id="wait" div displays function return messages -->
     </form>
     
     <script>
@@ -124,7 +127,7 @@
         var start = document.getElementById('start').value;
         var end = document.getElementById('end').value;
 
-        var dryRun = document.getElementById('dryRun').checked;
+        var dryRun = document.getElementById('dryRun').checked; // by default, checkbox is unchecked, meaning .checked is false
 
         document.getElementById("wait").innerHTML = "Please wait...";
 
