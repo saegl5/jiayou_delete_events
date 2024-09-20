@@ -1,6 +1,6 @@
 # Delete 加油 ("jiā yóu") Events (Deprecated)
 
-Google Web app for batch deleting events on only certain letter days (e.g., on only "J Day's"). Modify as needed, and back up your calendars before you run the app. These events are not recurring events, so without a batch script one would need to delete these events manually.
+Google Web app for batch deleting events on only certain letter days (e.g., on only "J Day's"). Modify as needed, and back up your calendars before you run the app. ~~These events are not recurring events, so without a batch script one would need to delete these events manually~~ As of commit 28b85c61743f0ebf5d10eafae8032a63bbfa069c, they are recurring events, so a batch script is no longer necessary.
 
 ```
 WARNING: Deleted events are not recoverable!
@@ -8,9 +8,15 @@ WARNING: Deleted events are not recoverable!
 
 ## Visual Example
 
-<img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="800"><br>Form for deleting "JIA YOU" events. (Sans the form color.)
+<img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="500"><br>Form for deleting "JIA YOU" events. (Sans the form color.)
 
 <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>Events on only "J Day's" were deleted. (See [here](https://github.com/saegl5/jiayou_update_events) how the events appeared before deleting them.)
+
+## Prerequisites
+
+1. Access to [Google Apps Script](https://script.google.com/)
+2. 加油 ("jiā yóu") calendar must already exist. If it doesn't, consult the [Web app for creating the calendar](https://github.com/saegl5/jiayou_create_calendar).
+3. Calendar events must also already exist. If they don't, consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
 
 ## Getting Started
 
