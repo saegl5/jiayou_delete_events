@@ -142,8 +142,12 @@ function deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end
 
         // Find matches
         if (eventDate === eventDateAdd) {
-          // Delete the event
+          // Delete the event and its guests
           if (!dryRun) {
+            var guestList = event.getGuestList(true); // "true" includes owner
+            for (const guest of guestList) {
+              event.removeGuest(guest.getEmail());
+            }
             event.deleteEvent(); // Gone forever!
           }
 
@@ -167,8 +171,12 @@ function deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end
       // Extract just the date part as a string
       eventDate = eventDate.toDateString();
 
-      // Delete the event
+      // Delete the event and its guests
       if (!dryRun) {
+        var guestList = event.getGuestList(true); // "true" includes owner
+        for (const guest of guestList) {
+          event.removeGuest(guest.getEmail());
+        }
         event.deleteEvent(); // Gone forever!
       }
 
