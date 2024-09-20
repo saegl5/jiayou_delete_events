@@ -1,30 +1,18 @@
-// Delete 加油 ("jiā yóu") Events
 // WARNING: Deleted events are not recoverable! Once they are deleted, they are gone forever!
 // Modify the following search parameters, then press |> Run
 
-// Search parameters
-var myCalendarName = "JIA YOU"; // Must name it differently from the owner name
-var myNewQuery = "Updated Meeting"; // Event you want to delete
-var myNewQueryAdd = "J Day"; // Input additional query to confine search
-var myNewStart = ""; // Confine date range
-var myNewEnd = ""; // Confine date range
-// Accepted date formats: Mmm DD YYYY, MM/DD/YYYY, DD Mmm YYYY
-// Why not accept YYYY/MM/DD ? Because it defaults to Coordinated Universal Time
-var myNewDryRun = false; // test script before running it in production
-
-
-
-
-
-// -----------------------------------------------------------------------------------
-// ** WARNING **
+// ** EXTRA WARNING **
 // If the script below is modified improperly, running it may cause irrevocable damage.
 // The script below comes with absolutely no warranty. Use it at your own risk.
 
-function deleteEvents() {
-  var calendarName = myCalendarName;
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile("Index");
+}
+
+function deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end, dryRun) {
   var calendars = CalendarApp.getAllCalendars(); // Get all calendars
   var calendarId = ""; // Initially null
+  var calendarIdAlt = ""; // Initially null
 
   // Loop through all calendars and find the one with the matching name
   for (var i = 0; i < calendars.length; i++) {
@@ -35,36 +23,55 @@ function deleteEvents() {
 
   // Check if loop finds no calendar
   if (calendarId === "") {
-    Logger.log('No "' + calendarName + '" calendar exists!');
-    return null;
+    return 'No "' + calendarName + '" calendar exists!';
+  }
+
+  // Repeat loop for alternate calendar (if one exists)
+  if (calendarNameAlt !== "") {
+    for (var j = 0; j < calendars.length; j++) {
+      if (calendars[j].getName() === calendarNameAlt) {
+        calendarIdAlt = String(calendars[j].getId()); // Assign the calendar ID
+      }
+    }
+  }
+
+  // Check if loop finds no calendar
+  if (calendarNameAlt !== "" && calendarIdAlt === "") {
+    return 'No "' + calendarNameAlt + '" calendar exists!';
   }
 
   // Access the calendar
   var calendar = CalendarApp.getCalendarById(calendarId);
+  if (calendarNameAlt !== "") {
+    var calendarAlt = CalendarApp.getCalendarById(calendarIdAlt);
+  }
 
   // Check for null dates
-  if (myNewStart !== "" && myNewEnd !== "") {
+  if (start !== "" && end !== "") {
     // Set the search parameters
-    var query = myNewQuery;
-    var queryAdd = myNewQueryAdd;
-    myNewStart = new Date(myNewStart);
-    myNewEnd = new Date(myNewEnd); // excluded from search
-    myNewEnd.setDate(myNewEnd.getDate() + 1); // include end date in search
+    start = new Date(start);
+    end = new Date(end); // excluded from search
+    end.setDate(end.getDate() + 1); // include end date in search
 
     // Search for events between start and end dates
-    var eventsAll = calendar.getEvents(myNewStart, myNewEnd);
+    if (calendarNameAlt !== "") {
+      var eventsAll = calendarAlt.getEvents(start, end);
+    }
+    else {
+      var eventsAll = calendar.getEvents(start, end);
+    }
     var events = [];
     for (var j = 0; j < eventsAll.length; j++) {
       var event = eventsAll[j];
       if (event.getTitle() === query) {
-        // MORE RELIABLE!
+        // MORE RELIABLE THAN `{ search: query }`!
         events.push(event);
       }
     }
 
-    // Check additional query
+    // Check additional query, always searches first calendar
     if (queryAdd !== "") {
-      var eventsAddAll = calendar.getEvents(myNewStart, myNewEnd);
+      var eventsAddAll = calendar.getEvents(start, end);
       var eventsAdd = [];
       for (var k = 0; k < eventsAddAll.length; k++) {
         var event = eventsAddAll[k];
@@ -75,14 +82,17 @@ function deleteEvents() {
     }
   } else {
     // Set the search parameters
-    var query = myNewQuery;
-    var queryAdd = myNewQueryAdd;
     var now = new Date();
     var oneYearFromNow = new Date();
     oneYearFromNow.setFullYear(now.getFullYear() + 1);
 
     // Search for events between now and one year from now
-    var eventsAll = calendar.getEvents(now, oneYearFromNow);
+    if (calendarNameAlt !== "") {
+      var eventsAll = calendarAlt.getEvents(now, oneYearFromNow);
+    }
+    else {
+      var eventsAll = calendar.getEvents(now, oneYearFromNow);
+    }
     var events = [];
     for (var l = 0; l < eventsAll.length; l++) {
       var event = eventsAll[l];
@@ -91,7 +101,7 @@ function deleteEvents() {
       }
     }
 
-    // Check additional query
+    // Check additional query, always searches first calendar
     if (queryAdd !== "") {
       var eventsAddAll = calendar.getEvents(now, oneYearFromNow);
       var eventsAdd = [];
@@ -106,13 +116,11 @@ function deleteEvents() {
 
   // Check if query finds no events
   if (events.length === 0) {
-    Logger.log('No "' + query + '" events exist!');
-    return null;
+    return 'No "' + query + '" events exist!';
   }
   // Check if queryAdd finds no events
   if (queryAdd !== "" && eventsAdd.length === 0) {
-    Logger.log('No "' + queryAdd + '" events exist!');
-    return null;
+    return 'No "' + queryAdd + '" events exist!';
   }
 
   // Check if query and queryAdd find no matching events below
@@ -136,7 +144,7 @@ function deleteEvents() {
         // Find matches
         if (eventDate === eventDateAdd) {
           // Delete the event
-          if (!myNewDryRun) {
+          if (!dryRun) {
             event.deleteEvent(); // Gone forever!
           }
 
@@ -148,11 +156,9 @@ function deleteEvents() {
       });
     });
     if (match === false) {
-      Logger.log('No "' + query + '" and "' + queryAdd + '" events match!');
-      return null;
+      return 'No "' + query + '" and "' + queryAdd + '" events match!';
     } else {
-      Logger.log("Events deleted!");
-      return null;
+      return "Events deleted!";
     }
   } else {
     // Loop through each event found
@@ -163,14 +169,13 @@ function deleteEvents() {
       eventDate = eventDate.toDateString();
 
       // Delete the event
-      if (!myNewDryRun) {
+      if (!dryRun) {
         event.deleteEvent(); // Gone forever!
       }
 
       // Log which events were deleted
       Logger.log("Deleted an event on " + eventDate + ".");
     });
-    Logger.log("Events deleted!");
-    return null;
+    return "Events deleted!";
   }
 }
