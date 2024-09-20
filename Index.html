@@ -76,7 +76,8 @@
         /* color: black; */
         border-radius: 5px;
       }
-      h1, h3 {
+      h1,
+      h3 {
         text-align: center;
       }
       h3 {
@@ -104,9 +105,7 @@
           name="calendarNameAlt"
           placeholder="Optional"
         />
-        <text
-          >If you had created events on an alternate calendar</text
-        ><br />
+        <text>If you had created events on an alternate calendar</text><br />
         <br />
 
         <label for="query">Query:</label>
@@ -179,7 +178,15 @@
             .withSuccessHandler(function (response) {
               document.getElementById("wait").innerHTML = response; // Displays a success message when completed
             })
-            .deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end, dryRun);
+            .deleteEvents(
+              calendarName,
+              calendarNameAlt,
+              query,
+              queryAdd,
+              start,
+              end,
+              dryRun
+            );
         });
     </script>
   </body>

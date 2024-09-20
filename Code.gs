@@ -8,7 +8,15 @@ function doGet() {
   return HtmlService.createHtmlOutputFromFile("Index");
 }
 
-function deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end, dryRun) {
+function deleteEvents(
+  calendarName,
+  calendarNameAlt,
+  query,
+  queryAdd,
+  start,
+  end,
+  dryRun
+) {
   var calendars = CalendarApp.getAllCalendars(); // Get all calendars
   var calendarId = ""; // Initially null
   var calendarIdAlt = ""; // Initially null
@@ -55,8 +63,7 @@ function deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end
     // Search for events between start and end dates
     if (calendarNameAlt !== "") {
       var eventsAll = calendarAlt.getEvents(start, end);
-    }
-    else {
+    } else {
       var eventsAll = calendar.getEvents(start, end);
     }
     var events = [];
@@ -88,8 +95,7 @@ function deleteEvents(calendarName, calendarNameAlt, query, queryAdd, start, end
     // Search for events between now and one year from now
     if (calendarNameAlt !== "") {
       var eventsAll = calendarAlt.getEvents(now, oneYearFromNow);
-    }
-    else {
+    } else {
       var eventsAll = calendar.getEvents(now, oneYearFromNow);
     }
     var events = [];
