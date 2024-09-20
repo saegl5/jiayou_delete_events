@@ -1,5 +1,4 @@
 // WARNING: Deleted events are not recoverable! Once they are deleted, they are gone forever!
-// Modify the following search parameters, then press |> Run
 
 // ** EXTRA WARNING **
 // If the script below is modified improperly, running it may cause irrevocable damage.
