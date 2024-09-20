@@ -12,6 +12,12 @@ WARNING: Deleted events are not recoverable!
 
 <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>Events on only "J Day's" were deleted. (See [here](https://github.com/saegl5/jiayou_update_events) how the events appeared before deleting them.)
 
+## Prerequisites
+
+1. Access to [Google Apps Script](https://script.google.com/)
+2. 加油 ("jiā yóu") calendar must already exist. If it doesn't, consult the [Web app for creating the calendar](https://github.com/saegl5/jiayou_create_calendar).
+3. Calendar events must also already exist. If they don't, consult the [Web app for adding events](https://github.com/saegl5/jiayou_add_events).
+
 ## Getting Started
 
 1. Go to [Google Apps Script](https://script.google.com/), and create a new project.
