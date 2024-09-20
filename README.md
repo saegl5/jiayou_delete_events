@@ -1,6 +1,6 @@
 # Delete 加油 ("jiā yóu") Events (Deprecated)
 
-Google Web app for batch deleting events on only certain letter days (e.g., on only "J Day's"). Modify as needed, and back up your calendars before you run the app. These events are not recurring events, so without a batch script one would need to delete these events manually.
+Google Web app for batch deleting events on only certain letter days (e.g., on only "J Day's"). Modify as needed, and back up your calendars before you run the app. ~~These events are not recurring events, so without a batch script one would need to delete these events manually~~ As of commit 28b85c61743f0ebf5d10eafae8032a63bbfa069c, they are recurring events, so a batch script is no longer necessary.
 
 ```
 WARNING: Deleted events are not recoverable!
