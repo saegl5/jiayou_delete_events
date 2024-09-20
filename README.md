@@ -8,7 +8,7 @@ WARNING: Deleted events are not recoverable!
 
 ## Visual Example
 
-<img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="800"><br>Form for deleting "JIA YOU" events.
+<img src="screenshots/calendarForm.png" alt="screenshot of calendar form" width="800"><br>Form for deleting "JIA YOU" events. (Sans the form color.)
 
 <img src="screenshots/calendar.png" alt="screenshot of calendar" width="800"><br>Events on only "J Day's" were deleted. (See [here](https://github.com/saegl5/jiayou_update_events) how the events appeared before deleting them.)
 
