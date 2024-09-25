@@ -160,7 +160,9 @@ function deleteEvents(
           match = true;
 
           // Log which events were deleted
-          Logger.log("Deleted an event on " + eventDate + ".");
+          Logger.log(
+            'Deleted "' + event.getTitle() + '" on ' + eventDate + "!"
+          );
         }
       });
     });
@@ -187,7 +189,7 @@ function deleteEvents(
       }
 
       // Log which events were deleted
-      Logger.log("Deleted an event on " + eventDate + ".");
+      Logger.log('Deleted "' + event.getTitle() + '" on ' + eventDate + "!");
     });
     return "Events deleted!";
   }
